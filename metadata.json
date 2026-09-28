@@ -1,0 +1,6 @@
+{
+  "name": "VAJRA — BHARAT COMMAND NETWORK",
+  "description": "Futuristic Indian Geospatial Command Network featuring strict multi-factor biometric authentication (Dual-Iris, 3D Face, Voice), Bharat Focus geospatial intelligence, live telemetry, explainable decision support, and tamper-evident audit trail.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

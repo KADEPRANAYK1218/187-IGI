@@ -1,0 +1,785 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  h1, h2, h3, .font-display {
+    font-family: 'Rajdhani', 'Chakra Petch', sans-serif;
+  }
+
+  .font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-tech {
+    font-family: 'Chakra Petch', sans-serif;
+  }
+}
+
+/* Custom glowing effects and tactical HUD styles */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+/* Custom scrollbar for tactical panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 10, 20, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.45);
+}
+
+/* Glassmorphic Tactical Panels */
+.vajra-panel {
+  background: rgba(17, 28, 61, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.vajra-panel-elevated {
+  background: rgba(10, 18, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.vajra-panel-alert {
+  background: rgba(35, 10, 20, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(244, 63, 94, 0.15);
+}
+
+.vajra-border-saffron {
+  border-color: rgba(255, 153, 51, 0.4);
+}
+
+.vajra-glow-saffron {
+  box-shadow: 0 0 20px rgba(255, 153, 51, 0.25);
+}
+
+.vajra-glow-cyan {
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.25);
+}
+
+.vajra-glow-green {
+  box-shadow: 0 0 20px rgba(19, 136, 8, 0.25);
+}
+
+/* =========================================================================
+   LIGHT THEME OVERRIDES (TACTICAL COMMAND HIGH-CONTRAST LIGHT MODE)
+   ========================================================================= */
+html.theme-light,
+body.theme-light,
+.theme-light {
+  color-scheme: light !important;
+}
+
+.theme-light,
+.theme-light #vajra-root-app,
+.theme-light #vajra-main-dashboard {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Base Headings, Paragraphs, and Labels */
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
+  color: #0f172a !important;
+}
+
+.theme-light label {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.theme-light p {
+  color: #334155 !important;
+}
+
+/* =========================================================================
+   1. LOGIN PAGE & AUTHENTICATION COMPONENTS IN LIGHT MODE
+   ========================================================================= */
+
+/* Login Background Container & Ambient Layers */
+.theme-light #india-tactical-background {
+  background-color: #f1f5f9 !important;
+}
+
+/* Top Atmospheric Indian Glow Strip stays luminous */
+.theme-light #vajra-auth-card .bg-gradient-to-r {
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Main Login Card */
+.theme-light #vajra-auth-card,
+.theme-light .vajra-panel-elevated {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+}
+
+/* Authorized Personnel Access Only Badge */
+.theme-light #vajra-auth-card .inline-flex[class*="bg-cyan-"] {
+  background-color: #f0f9ff !important;
+  border-color: #7dd3fc !important;
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+}
+
+/* Tabs Container (EXISTING OFFICER / NEW REGISTRATION) */
+.theme-light #vajra-auth-card .grid.grid-cols-2[class*="bg-slate-"] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.theme-light #vajra-auth-card #tab-existing-officer:not([class*="bg-gradient"]),
+.theme-light #vajra-auth-card #tab-new-registration:not([class*="bg-gradient"]) {
+  color: #475569 !important;
+  background-color: transparent !important;
+  font-weight: 700 !important;
+}
+
+.theme-light #vajra-auth-card #tab-existing-officer:not([class*="bg-gradient"]):hover,
+.theme-light #vajra-auth-card #tab-new-registration:not([class*="bg-gradient"]):hover {
+  color: #0f172a !important;
+  background-color: #e2e8f0 !important;
+}
+
+/* Quick Demo Synthetic IDs Box */
+.theme-light #vajra-auth-card .p-2\.5[class*="bg-slate-"] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.theme-light #vajra-auth-card .p-2\.5[class*="bg-slate-"] span {
+  color: #0369a1 !important;
+}
+
+.theme-light #vajra-auth-card .p-2\.5 button {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.theme-light #vajra-auth-card .p-2\.5 button:hover {
+  background-color: #f0f9ff !important;
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+}
+
+.theme-light #vajra-auth-card .p-2\.5 button[class*="font-bold"] {
+  background-color: #e0f2fe !important;
+  border-color: #0284c7 !important;
+  color: #0369a1 !important;
+}
+
+/* Service Selection Grid Buttons */
+.theme-light #vajra-auth-card button[class*="bg-slate-900/50"],
+.theme-light #vajra-auth-card button[class*="bg-slate-900"] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.theme-light #vajra-auth-card button[class*="bg-slate-900/50"]:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #0284c7 !important;
+  color: #0f172a !important;
+}
+
+.theme-light #vajra-auth-card button[class*="bg-cyan-950/80"],
+.theme-light #vajra-auth-card button[class*="bg-cyan-950"] {
+  background-color: #e0f2fe !important;
+  border-color: #0284c7 !important;
+  color: #0369a1 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2) !important;
+}
+
+/* Synthetic ID and Manual ID Box in Registration */
+.theme-light #vajra-auth-card [class*="bg-slate-950/90"],
+.theme-light #vajra-auth-card [class*="bg-slate-950/95"],
+.theme-light #vajra-auth-card [class*="bg-slate-950/40"] {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #14532d !important;
+}
+
+.theme-light #vajra-auth-card [class*="bg-slate-950/90"] .text-cyan-300 {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+.theme-light #vajra-auth-card [class*="bg-slate-900/30"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Biometrics Disclaimer Note */
+.theme-light #vajra-auth-card [class*="bg-slate-900/40"],
+.theme-light #vajra-auth-card [class*="bg-slate-900/60"] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.theme-light #vajra-auth-card [class*="bg-slate-900/40"] span {
+  color: #334155 !important;
+}
+
+/* Form Controls (Inputs, Selects, and Textareas) */
+.theme-light input[type="text"],
+.theme-light input[type="password"],
+.theme-light input[type="search"],
+.theme-light input[type="email"],
+.theme-light input[type="tel"],
+.theme-light input[type="number"],
+.theme-light select,
+.theme-light textarea {
+  background-color: #ffffff !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+.theme-light input:focus,
+.theme-light select:focus,
+.theme-light textarea:focus {
+  border-color: #0284c7 !important;
+  outline: 2px solid rgba(2, 132, 199, 0.2) !important;
+}
+
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+  color: #64748b !important;
+}
+
+.theme-light select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Biometric Consent Checkbox Text */
+.theme-light #reg-biometric-consent + span,
+.theme-light label[for="reg-biometric-consent"] {
+  color: #0f172a !important;
+}
+
+/* =========================================================================
+   2. DASHBOARD PAGE & WIDGETS IN LIGHT MODE
+   ========================================================================= */
+
+/* Light Theme Header */
+.theme-light header {
+  background-color: #ffffff !important;
+  border-bottom-color: #cbd5e1 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Header Center Pill */
+.theme-light header [class*="bg-[#02132d]"] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Light Theme Sidebar Navigation */
+.theme-light aside {
+  background-color: #ffffff !important;
+  border-right-color: #cbd5e1 !important;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+.theme-light aside button:not([class*="bg-gradient"]) {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light aside button:not([class*="bg-gradient"]):hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Bottom Holographic Mesh Card in Sidebar */
+.theme-light aside [class*="bg-[#010816]"] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.theme-light aside [class*="bg-[#02132d]"] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Main Dashboard Cards & Panels */
+.theme-light #vajra-metric-kpi-row,
+.theme-light [id^="card-"],
+.theme-light .vajra-settings-card,
+.theme-light .vajra-panel,
+.theme-light #vajra-live-operational-map,
+.theme-light #recent-reports-widget,
+.theme-light #recent-incidents-widget,
+.theme-light #weather-intelligence-widget,
+.theme-light #mission-status-widget,
+.theme-light #soldier-health-widget,
+.theme-light [class*="bg-slate-950"],
+.theme-light [class*="bg-slate-900"],
+.theme-light [class*="bg-[#020b1c]"],
+.theme-light [class*="bg-[#030d22]"],
+.theme-light [class*="bg-[#02091b]"],
+.theme-light [class*="bg-[#020a1c]"],
+.theme-light [class*="bg-[#010614]"],
+.theme-light [class*="bg-[#050A14]"] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+  color: #0f172a !important;
+}
+
+/* Disable dark gradient images in Light Mode so card backgrounds become clean and visible */
+.theme-light [class*="bg-gradient-to-"] {
+  background-image: none !important;
+}
+
+/* Light mode specific background tints for metric & severity cards */
+.theme-light [class*="from-red-950"] {
+  background-color: #fef2f2 !important;
+  background-image: none !important;
+  border-color: #fca5a5 !important;
+}
+.theme-light [class*="from-amber-950"] {
+  background-color: #fffbeb !important;
+  background-image: none !important;
+  border-color: #fcd34d !important;
+}
+.theme-light [class*="from-cyan-950"] {
+  background-color: #f0f9ff !important;
+  background-image: none !important;
+  border-color: #7dd3fc !important;
+}
+.theme-light [class*="from-emerald-950"] {
+  background-color: #ecfdf5 !important;
+  background-image: none !important;
+  border-color: #6ee7b7 !important;
+}
+
+/* Sub-cards inside metric KPI row & widget items */
+.theme-light #vajra-metric-kpi-row [class*="bg-[#030d22]"],
+.theme-light [class*="bg-[#010816]"],
+.theme-light [class*="bg-[#01091a]"],
+.theme-light [class*="bg-[#021029]"],
+.theme-light [class*="bg-[#02132d]"],
+.theme-light [class*="bg-[#031533]"],
+.theme-light [class*="bg-[#031a3d]"],
+.theme-light [class*="bg-[#02182b]"],
+.theme-light [class*="bg-[#241300]"],
+.theme-light [class*="bg-slate-900/40"],
+.theme-light [class*="bg-slate-900/50"],
+.theme-light [class*="bg-slate-900/60"],
+.theme-light [class*="bg-slate-900/80"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.theme-light #vajra-metric-kpi-row [class*="bg-[#030d22]"]:hover,
+.theme-light [class*="bg-slate-900/40"]:hover,
+.theme-light [class*="bg-slate-900/80"]:hover {
+  background-color: #ffffff !important;
+  border-color: #38bdf8 !important;
+}
+
+/* Metric KPI Row Numbers & Labels */
+.theme-light #vajra-metric-kpi-row .text-2xl {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.theme-light #vajra-metric-kpi-row [class*="text-[10.5px]"] {
+  color: #475569 !important;
+  font-weight: 700 !important;
+}
+
+/* Circular Progress Rings in Mission Status & Readiness */
+.theme-light circle[stroke="#1E293B"],
+.theme-light circle[stroke="#1e293b"],
+.theme-light circle[stroke="#021029"],
+.theme-light circle[stroke="#01091a"] {
+  stroke: #e2e8f0 !important;
+}
+
+/* AI Decision Pipeline Steps */
+.theme-light [class*="bg-cyan-500/10"] {
+  background-color: #f0f9ff !important;
+  border-color: #bae6fd !important;
+  color: #0284c7 !important;
+}
+
+/* Weather Intelligence Widget Items */
+.theme-light #weather-intelligence-widget [class*="bg-[#0"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Incident & Report Rows */
+.theme-light #recent-reports-widget .group,
+.theme-light #recent-incidents-widget .group,
+.theme-light [id^="report-row-"],
+.theme-light [id^="incident-row-"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+.theme-light #recent-reports-widget .group:hover,
+.theme-light #recent-incidents-widget .group:hover,
+.theme-light [id^="report-row-"]:hover,
+.theme-light [id^="incident-row-"]:hover {
+  background-color: #f0f9ff !important;
+  border-color: #7dd3fc !important;
+}
+
+/* Severity & Category Badges */
+.theme-light [class*="bg-red-950"] {
+  background-color: #fef2f2 !important;
+  border-color: #fca5a5 !important;
+  color: #b91c1c !important;
+  font-weight: 700 !important;
+}
+
+.theme-light [class*="bg-amber-950"] {
+  background-color: #fffbeb !important;
+  border-color: #fcd34d !important;
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light [class*="bg-emerald-950"] {
+  background-color: #ecfdf5 !important;
+  border-color: #6ee7b7 !important;
+  color: #047857 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light [class*="bg-cyan-950"] {
+  background-color: #f0f9ff !important;
+  border-color: #7dd3fc !important;
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light [class*="bg-blue-950"] {
+  background-color: #eff6ff !important;
+  border-color: #93c5fd !important;
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+}
+
+/* Text Colors */
+.theme-light .text-white,
+.theme-light .text-slate-100,
+.theme-light .text-slate-200 {
+  color: #0f172a !important;
+}
+
+.theme-light .text-slate-300,
+.theme-light .text-slate-400 {
+  color: #334155 !important;
+}
+
+.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+.theme-light .text-cyan-300,
+.theme-light .text-cyan-400 {
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light .text-amber-300,
+.theme-light .text-amber-400 {
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light .text-emerald-300,
+.theme-light .text-emerald-400 {
+  color: #047857 !important;
+  font-weight: 700 !important;
+}
+
+/* Preserve crisp bright text inside dark viewports, cameras & map overlays */
+.theme-light [class*="bg-black"] .text-cyan-300,
+.theme-light [class*="bg-black"] .text-cyan-400,
+.theme-light [class*="bg-black"] .text-slate-200,
+.theme-light [class*="bg-black"] .text-slate-300 {
+  color: #67e8f9 !important;
+}
+
+.theme-light [class*="bg-black"] .text-white {
+  color: #ffffff !important;
+}
+
+.theme-light button[class*="from-cyan-950"] {
+  background-color: #0284c7 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #0369a1 !important;
+}
+.theme-light button[class*="from-cyan-950"]:hover {
+  background-color: #0369a1 !important;
+}
+.theme-light button[class*="from-cyan-950"] * {
+  color: #ffffff !important;
+}
+
+/* Borders */
+.theme-light [class*="border-slate-800"],
+.theme-light [class*="border-slate-700"],
+.theme-light [class*="border-cyan-500/20"],
+.theme-light [class*="border-cyan-500/25"],
+.theme-light [class*="border-cyan-500/30"],
+.theme-light [class*="border-cyan-500/40"],
+.theme-light [class*="border-cyan-500/50"],
+.theme-light [class*="border-[#0055ff]/30"],
+.theme-light [class*="border-[#0055ff]/40"],
+.theme-light [class*="border-[#0055ff]/50"] {
+  border-color: #cbd5e1 !important;
+}
+
+/* Tables & Audit Logs */
+.theme-light table thead tr {
+  border-bottom-color: #cbd5e1 !important;
+  background-color: #f8fafc !important;
+}
+
+.theme-light table thead th {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light table tbody tr {
+  border-color: #e2e8f0 !important;
+}
+
+.theme-light table tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.theme-light table tbody td {
+  color: #1e293b !important;
+}
+
+.theme-light .divide-slate-800,
+.theme-light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #e2e8f0 !important;
+}
+
+/* Dialogs & Modal Popups in Light Mode */
+.theme-light .fixed.inset-0.bg-black\/80,
+.theme-light .fixed.inset-0.bg-black\/85,
+.theme-light .fixed.inset-0.bg-black\/90,
+.theme-light .fixed.inset-0[class*="bg-black"],
+.theme-light .fixed.inset-0[class*="bg-slate-950/"] {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.theme-light .fixed.inset-0 [class*="bg-[#020b1c]"],
+.theme-light .fixed.inset-0 [class*="bg-[#01091a]"],
+.theme-light .fixed.inset-0 [class*="bg-[#010816]"],
+.theme-light .fixed.inset-0 [class*="bg-slate-950"],
+.theme-light .fixed.inset-0 [class*="bg-slate-900"] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.15) !important;
+  color: #0f172a !important;
+}
+
+.theme-light .fixed.inset-0 [class*="bg-[#031533]"],
+.theme-light .fixed.inset-0 [class*="bg-slate-900/90"],
+.theme-light .fixed.inset-0 [class*="bg-slate-900/80"],
+.theme-light .fixed.inset-0 [class*="bg-slate-900/50"],
+.theme-light .fixed.inset-0 [class*="bg-slate-950/70"],
+.theme-light .fixed.inset-0 [class*="bg-slate-950/80"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.theme-light .fixed.inset-0 [class*="bg-[#031533]"]:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #0284c7 !important;
+}
+
+/* Footer in Light Mode */
+.theme-light footer {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+.theme-light footer span {
+  color: #0369a1 !important;
+}
+
+/* Light Mode Scrollbar */
+.theme-light ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+.theme-light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+}
+.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* ============================================================
+   TOGGLE SWITCHES & INACTIVE/OFF BADGES IN LIGHT MODE
+   ============================================================ */
+.theme-light span[class*="bg-slate-800"],
+.theme-light div[class*="bg-slate-800"],
+.theme-light .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+  color: #020617 !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Explicit high-visibility for OFF state badges in Light Mode */
+.theme-light [class*="bg-slate-800"].font-mono-code,
+.theme-light [class*="bg-slate-800"][class*="text-slate-400"] {
+  background-color: #e2e8f0 !important;
+  color: #020617 !important;
+  border: 1.5px solid #94a3b8 !important;
+  font-weight: 800 !important;
+}
+
+/* Toggle track when OFF in Light Mode */
+.theme-light div[class*="rounded-full"][class*="bg-slate-800"],
+.theme-light button[class*="rounded-full"][class*="bg-slate-800"] {
+  background-color: #cbd5e1 !important;
+  border: 1px solid #94a3b8 !important;
+}
+
+/* Toggle knob when OFF in Light Mode */
+.theme-light div[class*="rounded-full"][class*="bg-slate-800"] > div,
+.theme-light button[class*="rounded-full"][class*="bg-slate-800"] > div {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Active toggle badges */
+.theme-light [class*="bg-emerald-500/20"] {
+  background-color: #d1fae5 !important;
+  color: #064e3b !important;
+  border-color: #059669 !important;
+  font-weight: 800 !important;
+}
+
+/* ============================================================
+   MATTER TEXT & CONTENT VISIBILITY (HIGH CONTRAST FOR LONG SIGHT)
+   ============================================================ */
+.theme-light p,
+.theme-light label,
+.theme-light dd,
+.theme-light dt,
+.theme-light li {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+.theme-light .text-slate-300,
+.theme-light .text-slate-400 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.theme-light .text-slate-500 {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+.theme-light .text-cyan-400,
+.theme-light .text-cyan-300 {
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light .text-amber-400,
+.theme-light .text-amber-300 {
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light .text-emerald-400,
+.theme-light .text-emerald-300 {
+  color: #047857 !important;
+  font-weight: 700 !important;
+}
+
+.theme-light .text-red-400,
+.theme-light .text-rose-400 {
+  color: #b91c1c !important;
+  font-weight: 700 !important;
+}
+
+
+
+
